@@ -19,11 +19,17 @@ namespace AhcDemo
 
         public override double DistanceTo(Cluster cluster)
         {
-            if (cluster is Single single) return Math.Abs(Value - single.Value);
-            var couple = (Couple) cluster;
-            var left = couple.Left.DistanceTo(this);
-            var right = couple.Right.DistanceTo(this);
-            return left < right ? left : right;
+            switch (cluster)
+            {
+                case Single single:
+                    return Math.Abs(Value - single.Value);
+                case Couple couple:
+                    var left = DistanceTo(couple.Left);
+                    var right = DistanceTo(couple.Right);
+                    return left < right ? left : right;
+                default: // never happen
+                    throw new ArgumentException("The argument type must be Single or Couple.");
+            }
         }
 
         public override void Print(string indent = "") => Console.WriteLine(indent + Value);
