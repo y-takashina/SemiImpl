@@ -52,19 +52,41 @@ namespace KernelDemo
             }
         }
 
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        private List<(double x, double y, double z)> _classify(string positiveClass, string negativeClass, Func<double[], double[], double> kernel, double lambda)
         {
-            _updateChart(checkBox1.Text, checkBox1.Checked, 0, 1);
-        }
+            var nPositive = _data.Count(item => item.output == positiveClass);
+            var nNegative = _data.Count(item => item.output == negativeClass);
+            var outputs = new double[nPositive + nNegative];
+            for (var i = 0; i < nPositive + nNegative; i++)
+            {
+                outputs[i] = i < nPositive ? +1 : -1;
+            }
+            var positives = _data.Where(item => item.output == positiveClass).Select(item => item.input.Take(2).ToArray());
+            var negatives = _data.Where(item => item.output == negativeClass).Select(item => item.input.Take(2).ToArray());
+            var inputs = positives.Concat(negatives).ToArray();
+            var alpha = Optimizer.GradientDescent(inputs, outputs, kernel, lambda);
+            var eval = Kernel.EvalFunc(inputs, outputs, kernel, lambda, alpha);
 
-        private void checkBox2_CheckedChanged(object sender, EventArgs e)
-        {
-            _updateChart(checkBox2.Text, checkBox2.Checked, 0, 1);
-        }
+            var interval = 0.05;
+            var minX = chart1.ChartAreas[0].AxisX.Minimum;
+            var maxX = chart1.ChartAreas[0].AxisX.Maximum;
+            var minY = chart1.ChartAreas[0].AxisY.Minimum;
+            var maxY = chart1.ChartAreas[0].AxisY.Maximum;
+            var nCols = (int)((maxX - minX) / interval);
+            var nRaws = (int)((maxY - minY) / interval);
 
-        private void checkBox3_CheckedChanged(object sender, EventArgs e)
-        {
-            _updateChart(checkBox3.Text, checkBox3.Checked, 0, 1);
+            var points = new List<(double, double, double)>();
+            for (var i = 0; i < nRaws; i++)
+            {
+                var y = minY + i * interval;
+                for (var j = 0; j < nCols; j++)
+                {
+                    var x = minX + j * interval;
+                    var z = eval(new[] { x, y });
+                    points.Add((x, y, z));
+                }
+            }
+            return points;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -90,41 +112,19 @@ namespace KernelDemo
             chart1.PlotPoints(borderNegative, "-1", markerSize: 5);
         }
 
-        private List<(double x, double y, double z)> _classify(string positiveClass, string negativeClass, Func<double[], double[], double> kernel, double lambda)
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
-            var nPositive = _data.Count(item => item.output == positiveClass);
-            var nNegative = _data.Count(item => item.output == negativeClass);
-            var outputs = new double[nPositive + nNegative];
-            for (var i = 0; i < nPositive + nNegative; i++)
-            {
-                outputs[i] = i < nPositive ? +1 : -1;
-            }
-            var positives = _data.Where(item => item.output == positiveClass).Select(item => item.input.Take(2).ToArray());
-            var negatives = _data.Where(item => item.output == negativeClass).Select(item => item.input.Take(2).ToArray());
-            var inputs = positives.Concat(negatives).ToArray();
-            var alpha = Kernel.GradientDescent(inputs, outputs, kernel, lambda);
-            var eval = Kernel.EvalFunc(inputs, outputs, kernel, lambda, alpha);
+            _updateChart(checkBox1.Text, checkBox1.Checked, 0, 1);
+        }
 
-            var interval = 0.05;
-            var minX = chart1.ChartAreas[0].AxisX.Minimum;
-            var maxX = chart1.ChartAreas[0].AxisX.Maximum;
-            var minY = chart1.ChartAreas[0].AxisY.Minimum;
-            var maxY = chart1.ChartAreas[0].AxisY.Maximum;
-            var nCols = (int) ((maxX - minX) / interval);
-            var nRaws = (int) ((maxY - minY) / interval);
+        private void checkBox2_CheckedChanged(object sender, EventArgs e)
+        {
+            _updateChart(checkBox2.Text, checkBox2.Checked, 0, 1);
+        }
 
-            var points = new List<(double, double, double)>();
-            for (var i = 0; i < nRaws; i++)
-            {
-                var y = minY + i * interval;
-                for (var j = 0; j < nCols; j++)
-                {
-                    var x = minX + j * interval;
-                    var z = eval(new[] {x, y});
-                    points.Add((x, y, z));
-                }
-            }
-            return points;
+        private void checkBox3_CheckedChanged(object sender, EventArgs e)
+        {
+            _updateChart(checkBox3.Text, checkBox3.Checked, 0, 1);
         }
 
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
