@@ -7,18 +7,18 @@ namespace KernelDemo
 {
     public static class Optimizer
     {
-        public static double[] GradientDescent(IEnumerable<double[]> inputs, double[] outputs, Func<double[], double[], double> kernel, double lambda)
+        public static double[] GradientDescent(IEnumerable<double[]> inputs, double[] outputs, Func<double[], double[], double> kernel, double lambda, int maxItr = 10000)
         {
+            var beta = 1.0;
             var eta = lambda * 1e-6;
             var n = outputs.GetLength(0);
-            var yMat = Matrix.Diagonal(outputs);
+            var diag = Matrix.Diagonal(outputs);
             var kerMat = Kernel.KernelMatrix(inputs, kernel);
             var alpha = Vector.Ones(n).Multiply(lambda / 2);
-            var beta = 1.0;
             var dot = alpha.Dot(outputs);
-            for (var itr = 0; itr < 10000; itr++)
+            for (var itr = 0; itr < maxItr; itr++)
             {
-                var grad = alpha.Dot(yMat).Dot(kerMat).Dot(yMat);
+                var grad = alpha.Dot(diag).Dot(kerMat).Dot(diag);
                 for (var i = 0; i < n; i++)
                 {
                     grad[i] -= 1;

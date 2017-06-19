@@ -25,10 +25,11 @@ namespace KernelDemo
             var matrix = new double[n, n];
             for (var i = 0; i < n; i++)
             {
-                for (var j = 0; j < n; j++)
+                for (var j = 0; j < i; j++)
                 {
-                    matrix[i, j] = kernel(array[i], array[j]);
+                    matrix[i, j] = matrix[j, i] = kernel(array[i], array[j]);
                 }
+                matrix[i, i] = kernel(array[i], array[i]);
             }
             return matrix;
         }
