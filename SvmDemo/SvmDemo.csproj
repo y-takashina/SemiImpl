@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{157A5F83-D9F9-45F7-B3A4-6617A0476209}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>KernelDemo</RootNamespace>
-    <AssemblyName>KernelDemo</AssemblyName>
+    <RootNamespace>SvmDemo</RootNamespace>
+    <AssemblyName>SvmDemo</AssemblyName>
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -83,6 +83,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

@@ -1,4 +1,4 @@
-﻿namespace KernelDemo
+﻿namespace SvmDemo
 {
     partial class Form1
     {

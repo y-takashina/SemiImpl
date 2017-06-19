@@ -1,13 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.12
+VisualStudioVersion = 15.0.26430.13
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AhcDemo", "AhcDemo\AhcDemo.csproj", "{4AE6D385-47F0-4B66-8F49-4F47303E5D40}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RegressionDemo", "RegressionDemo\RegressionDemo.csproj", "{EE85D406-FC12-41FA-B8F6-848311EF93B6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KernelDemo", "KernelDemo\KernelDemo.csproj", "{157A5F83-D9F9-45F7-B3A4-6617A0476209}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SvmDemo", "SvmDemo\SvmDemo.csproj", "{157A5F83-D9F9-45F7-B3A4-6617A0476209}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

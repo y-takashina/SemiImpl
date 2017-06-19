@@ -8,11 +8,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Windows.Forms.DataVisualization.Charting;
-using Accord.Math;
-using Accord.Math.Optimization;
 
-namespace KernelDemo
+namespace SvmDemo
 {
     public partial class Form1 : Form
     {

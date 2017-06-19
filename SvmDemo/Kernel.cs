@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Accord.Math;
 
-namespace KernelDemo
+namespace SvmDemo
 {
     public static class Kernel
     {
