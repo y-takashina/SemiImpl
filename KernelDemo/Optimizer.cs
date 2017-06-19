@@ -15,10 +15,10 @@ namespace KernelDemo
             var diag = Matrix.Diagonal(outputs);
             var kerMat = Kernel.KernelMatrix(inputs, kernel);
             var alpha = Vector.Ones(n).Multiply(lambda / 2);
-            var dot = alpha.Dot(outputs);
             for (var itr = 0; itr < maxItr; itr++)
             {
                 var grad = alpha.Dot(diag).Dot(kerMat).Dot(diag);
+                var dot = alpha.Dot(outputs);
                 for (var i = 0; i < n; i++)
                 {
                     grad[i] -= 1;
