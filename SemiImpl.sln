@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AhcDemo", "AhcDemo\AhcDemo.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RegressionDemo", "RegressionDemo\RegressionDemo.csproj", "{EE85D406-FC12-41FA-B8F6-848311EF93B6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KernelDemo", "KernelDemo\KernelDemo.csproj", "{157A5F83-D9F9-45F7-B3A4-6617A0476209}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{EE85D406-FC12-41FA-B8F6-848311EF93B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EE85D406-FC12-41FA-B8F6-848311EF93B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EE85D406-FC12-41FA-B8F6-848311EF93B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{157A5F83-D9F9-45F7-B3A4-6617A0476209}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{157A5F83-D9F9-45F7-B3A4-6617A0476209}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{157A5F83-D9F9-45F7-B3A4-6617A0476209}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{157A5F83-D9F9-45F7-B3A4-6617A0476209}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
