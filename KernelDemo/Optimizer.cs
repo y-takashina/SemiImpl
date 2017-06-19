@@ -17,11 +17,11 @@ namespace KernelDemo
             var alpha = Vector.Ones(n).Multiply(lambda / 2);
             for (var itr = 0; itr < maxItr; itr++)
             {
-                var grad = alpha.Dot(diag).Dot(kerMat).Dot(diag);
                 var dot = alpha.Dot(outputs);
+                // object
+                var grad = alpha.Dot(diag).Dot(kerMat).Dot(diag).Subtract(1);
                 for (var i = 0; i < n; i++)
                 {
-                    grad[i] -= 1;
                     // penalty
                     grad[i] += beta * dot * outputs[i];
                     grad[i] += beta / ((lambda - alpha[i]) * (lambda - alpha[i]));
